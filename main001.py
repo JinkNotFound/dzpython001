@@ -65,7 +65,8 @@ def search_contact():
 
 def copy_contact(source_filename, destination_filename, line_number):
     with open(source_filename, 'r', encoding='utf-8') as source_file:
-        contacts_list = source_file.read().strip().split('\n\n')
+        contacts_data = source_file.read()
+        contacts_list = contacts_data.strip().split('\n\n')
         
         if 1 <= line_number <= len(contacts_list):
             contact_to_copy = contacts_list[line_number - 1]
@@ -73,9 +74,10 @@ def copy_contact(source_filename, destination_filename, line_number):
             with open(destination_filename, 'a', encoding='utf-8') as destination_file:
                 destination_file.write(f'{contact_to_copy}\n\n')
                 
-            print(f'Контакт успешно скопирован: {contact_to_copy}')
+            print('Контакт успешно скопирован!')
         else:
-            print('Некорректный номер строки.')
+            print('Ошибка: некорректный номер строки.')
+
 
 def interface():
     source_filename = "phonebook.txt"
